@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using VeriShareApplication.Models;
@@ -13,11 +14,11 @@ namespace VeriShareApplication.Controllers
     public class CustomersController : Controller
     {
         private VeriShareApplicationContext db = new VeriShareApplicationContext();
-
+       public DumyData GetData = new DumyData();
         // GET: Customers
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.Customers.ToList());
+            return View(await GetData.GetAllCustomers());
         }
 
         // GET: Customers/Details/5
@@ -114,6 +115,7 @@ namespace VeriShareApplication.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

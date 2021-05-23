@@ -1,16 +1,73 @@
-﻿@model IEnumerable<VeriShareApplication.Models.Customer>
+﻿@model IEnumerable<VeriShareApplication.Models.CustomerViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <style>
+        * {
+            box-sizing: border-box
+        }
 
-<h2>Index</h2>
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+        /* Style tab links */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+        }
+
+            .tablink:hover {
+                background-color: #777;
+            }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Home {
+            background-color: red;
+        }
+
+        #News {
+            background-color: green;
+        }
+
+        #Contact {
+            background-color: blue;
+        }
+
+        #About {
+            background-color: orange;
+        }
+    </style>
+    </head>
+
+<br />
+<br />
+<br />
+<br />
+<h2 class="text-center">Customer List</h2>
+
+
 <table class="table">
-    <tr>
+    <tr style="background-color:#808080;color:black">
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -26,26 +83,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CustomerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.OrderByDescending(t => t.FirstName))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.ActionLink("Request Loan", "Create", "CustomerLoans", new { id = item.CustomerId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
 
 </table>
+<br />
+<br />
+<br />
+
+    <button type="submit" class="tablink">@Html.ActionLink("Add Customer", "Create","Customers", new { @style = "color:#f0eeee" })</button>
+    <button type="submit" class="tablink">@Html.ActionLink("Add Agreement Type", "Create","AgreementTypes", new { @style = "color:#f0eeee" })</button>
+    <button type="submit" class="tablink">@Html.ActionLink("Customer List", "Index","Customers", new { @style = "color:#f0eeee" })</button>
+    <button type="submit" class="tablink">@Html.ActionLink("Agreement List", "Index","AgreementTypes", new { @style = "color:#f0eeee" })</button>

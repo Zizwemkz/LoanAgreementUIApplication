@@ -3,7 +3,61 @@
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <style>
+        * {
+            box-sizing: border-box
+        }
 
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Style tab links */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+        }
+
+            .tablink:hover {
+                background-color: #777;
+            }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Home {
+            background-color: red;
+        }
+
+        #News {
+            background-color: green;
+        }
+
+        #Contact {
+            background-color: blue;
+        }
+
+        #About {
+            background-color: orange;
+        }
+    </style>
+</head>
 <h2>Index</h2>
 
 <p>
@@ -14,20 +68,25 @@
         <th>
             @Html.DisplayNameFor(model => model.AgreementName)
         </th>
-        <th></th>
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AgreementName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AgreementTypeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AgreementTypeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AgreementTypeId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgreementName)
+            </td>
+
+        </tr>
+    }
 
 </table>
+<br />
+<br />
+<br />
+
+<button type="submit" class="tablink">@Html.ActionLink("Add Customer", "Create", "Customers", new { @style = "color:#f0eeee" })</button>
+<button type="submit" class="tablink">@Html.ActionLink("Add Agreement Type", "Create", "AgreementTypes", new { @style = "color:#f0eeee" })</button>
+<button type="submit" class="tablink">@Html.ActionLink("Customer List", "Index", "Customers", new { @style = "color:#f0eeee" })</button>
+<button type="submit" class="tablink">@Html.ActionLink("Agreement List", "Index", "AgreementTypes", new { @style = "color:#f0eeee" })</button>

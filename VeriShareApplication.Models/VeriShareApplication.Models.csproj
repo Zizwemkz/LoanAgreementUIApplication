@@ -74,6 +74,7 @@
     <Compile Include="CustomerLoanViewModel.cs" />
     <Compile Include="CustomerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TbAgreementType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

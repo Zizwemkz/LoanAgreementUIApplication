@@ -1,5 +1,59 @@
 ﻿@model IEnumerable<VeriShareApplication.Models.CustomerLoan>
+<head>
+    <style>
+        * {
+            box-sizing: border-box
+        }
 
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Style tab links */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+        }
+
+            .tablink:hover {
+                background-color: #777;
+            }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Home {
+            background-color: red;
+        }
+
+        #News {
+            background-color: green;
+        }
+
+        #Contact {
+            background-color: blue;
+        }
+
+        #About {
+            background-color: orange;
+        }
+    </style>
+</head>
 @{
     ViewBag.Title = "Index";
 }
@@ -44,44 +98,55 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AgreementType.AgreementName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReturnInterest)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RepoRate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransectionMessage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Agreementpicked)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LoanId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LoanId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LoanId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgreementType.AgreementName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnInterest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepoRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransectionMessage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agreementpicked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.LoanId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.LoanId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.LoanId })
+                </td>*@
+        </tr>
+    }
 
 </table>
+
+
+<br />
+<br />
+<br />
+
+<button type="submit" class="tablink">@Html.ActionLink("Add Customer", "Create", "Customers", new { @style = "color:#f0eeee" })</button>
+<button type="submit" class="tablink">@Html.ActionLink("Add Agreement Type", "Create", "AgreementTypes", new { @style = "color:#f0eeee" })</button>
+<button type="submit" class="tablink">@Html.ActionLink("Customer List", "Index", "Customers", new { @style = "color:#f0eeee" })</button>
+<button type="submit" class="tablink">@Html.ActionLink("Agreement List", "Index", "AgreementTypes", new { @style = "color:#f0eeee" })</button>
