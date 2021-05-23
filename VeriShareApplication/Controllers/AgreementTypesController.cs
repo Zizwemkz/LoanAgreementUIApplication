@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using VeriShareApplication.Models;
@@ -13,11 +14,11 @@ namespace VeriShareApplication.Controllers
     public class AgreementTypesController : Controller
     {
         private VeriShareApplicationContext db = new VeriShareApplicationContext();
-
+        public  DumyData GetData = new DumyData();
         // GET: AgreementTypes
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.AgreementTypes.ToList());
+            return View(await GetData.GetAlltypes());
         }
 
         // GET: AgreementTypes/Details/5
