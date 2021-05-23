@@ -1,0 +1,26 @@
+﻿@model VeriShareApplication.Models.AgreementType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AgreementType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AgreementName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgreementName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AgreementTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

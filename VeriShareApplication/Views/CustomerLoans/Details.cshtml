@@ -1,0 +1,98 @@
+﻿@model VeriShareApplication.Models.CustomerLoan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerLoan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AgreementType.AgreementName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgreementType.AgreementName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnInterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnInterest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepoRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepoRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransectionMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransectionMessage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agreementpicked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agreementpicked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LoanId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
