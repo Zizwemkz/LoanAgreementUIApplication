@@ -58,12 +58,12 @@
     ViewBag.Title = "Create";
 }
 
-<h2 class="text-center">Create</h2>
+<h2 class="text-center">Calculate Agreement Loan</h2>
 <br />
 <br />
 <br />
 <br />
-@using (Html.BeginForm("Create", "CustomerLoans", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("CalcLoan", "CustomerLoans", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -91,7 +91,7 @@
                                 <i class="fa fa-user"></i>
                             </div>
                             @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", @type = "number", @placeholder = "Amount" })
-                            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control;hidden", @placeholder = "Amount" })
+                            @Html.TextBoxFor(m => m.CustomerId, new { @class = "form-control hidden", @placeholder = "CustomerId" })
                             <br />
                             @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
                         </div>
@@ -172,8 +172,10 @@
 <br />
 <br />
 <br />
-<button type="button" class="tablink" onclick="location.href='@Url.Action("CalcLoan", "CustomerLoan" )'">Calculate Agreement Loan</button>
+<button type="button" class="tablink" onclick="location.href='@Url.Action("CalcLoan", "CustomerLoans" )'">Calculate Agreement Loan</button>
 <button type="button" class="tablink" onclick="location.href='@Url.Action("Create", "AgreementTypes")'">Add Agreement Type</button>
 <button type="submit" class="tablink" onclick="location.href='@Url.Action("Index", "AgreementTypes")'">Agreement Type List</button>
 <button type="submit" class="tablink" onclick="location.href='@Url.Action("Create", "Customers")'">Add Customer</button>
-
+<br />
+<br />
+<br />

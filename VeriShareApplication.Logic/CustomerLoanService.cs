@@ -41,7 +41,7 @@ namespace VeriShareApplication.Logic
             var json = JsonConvert.SerializeObject(model);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage respose = await client.PostAsync("http://localhost:50603/api/Customer", content);
+            HttpResponseMessage respose = await client.PostAsync("http://localhost:50603/api/CustomerLoan", content);
 
             if (respose.IsSuccessStatusCode)
             {

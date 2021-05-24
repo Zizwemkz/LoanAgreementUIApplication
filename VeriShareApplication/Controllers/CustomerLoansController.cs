@@ -73,40 +73,33 @@ namespace VeriShareApplication.Controllers
             return View(customerLoan);
         }
 
-        //// GET: CustomerLoans/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CustomerLoan customerLoan = db.CustomerLoans.Find(id);
-        //    if (customerLoan == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.AgreementId = new SelectList(db.AgreementTypes, "AgreementTypeId", "AgreementName", customerLoan.AgreementId);
-        //    //ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "FirstName", customerLoan.CustomerId);
-        //    return View(customerLoan);
-        //}
+        // GET: CustomerLoans/Create
+        public async Task<ActionResult> CalcLoan()
+        {
+            ViewBag.AgreementId = new SelectList(await GetData.GetAlltypes(), "AgreementTypeId", "AgreementName");
+            return View();
+        }
 
-        //// POST: CustomerLoans/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async ActionResult Edit([Bind(Include = "LoanId,CustomerId,AgreementId,Amount,ReturnInterest,RepoRate,StatusCode,TransectionMessage,Agreementpicked,StartDate,EndDate")] CustomerLoan customerLoan)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(customerLoan).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.AgreementId = new SelectList(await GetData.GetAlltypes(), "AgreementTypeId", "AgreementName", GetData.GetAlltypes().Select(x=>x.AgreementTypeId));
-          
-        //    return View(customerLoan);
-        //}
+        // POST: CustomerLoans/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CalcLoan([Bind(Include = "LoanId,CustomerId,AgreementId,Amount,ReturnInterest,RepoRate,StatusCode,TransectionMessage,Agreementpicked,StartDate,EndDate")] CustomerLoan customerLoan)
+        {
+            if (ModelState.IsValid)
+            {
+                db.CustomerLoans.Add(customerLoan);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            var findpar = await GetData.GetAlltypes();
+            int AgreementId = findpar.Select(x => x.AgreementTypeId).FirstOrDefault();
+            ViewBag.AgreementId = new SelectList(await GetData.GetAlltypes(), "AgreementTypeId", "AgreementName", AgreementId);
+
+            return View(customerLoan);
+        }
+
 
         // GET: CustomerLoans/Delete/5
         public ActionResult Delete(int? id)

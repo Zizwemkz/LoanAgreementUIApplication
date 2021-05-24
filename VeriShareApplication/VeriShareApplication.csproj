@@ -202,6 +202,7 @@
     <Content Include="Views\CustomerLoans\Details.cshtml" />
     <Content Include="Views\CustomerLoans\Edit.cshtml" />
     <Content Include="Views\CustomerLoans\Index.cshtml" />
+    <Content Include="Views\CustomerLoans\CalcLoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -220,6 +221,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VeriShareApplication.Logic\VeriShareApplication.Logic.csproj">
+      <Project>{003f1444-9b59-419f-9c7c-1976fb157efb}</Project>
+      <Name>VeriShareApplication.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VeriShareApplication.Models\VeriShareApplication.Models.csproj">
       <Project>{15da6de4-96e2-4f9d-b2b5-0f513fa2531c}</Project>
       <Name>VeriShareApplication.Models</Name>

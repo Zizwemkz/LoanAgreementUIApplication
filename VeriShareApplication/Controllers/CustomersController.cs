@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using VeriShareApplication.Logic;
 using VeriShareApplication.Models;
 
 namespace VeriShareApplication.Controllers
@@ -15,27 +16,23 @@ namespace VeriShareApplication.Controllers
     {
         private VeriShareApplicationContext db = new VeriShareApplicationContext();
        public DumyData GetData = new DumyData();
+
+        private CustomerService _CustomerService;
+
+        public CustomersController()
+        {
+            this._CustomerService = new CustomerService();
+        }
+
+
         // GET: Customers
         public async Task<ActionResult> Index()
         {
-            return View(await GetData.GetAllCustomers());
+            return View(await _CustomerService.GetAllCustomers());
+            //return View(await GetData.GetAllCustomers());
         }
 
-        // GET: Customers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
-
+       
         // GET: Customers/Create
         public ActionResult Create()
         {
@@ -47,16 +44,16 @@ namespace VeriShareApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,FirstName,LastName,Email,phone")] Customer customer)
+        public ActionResult Create(CustomerViewModel customer)
         {
-            if (ModelState.IsValid)
+           
+            if (customer != null)
             {
-                db.Customers.Add(customer);
-                db.SaveChanges();
+                _CustomerService.AddCustomer(customer);
                 return RedirectToAction("Index");
             }
-
-            return View(customer);
+            else
+                return RedirectToAction("Not_Found", "Error");
         }
 
         // GET: Customers/Edit/5
