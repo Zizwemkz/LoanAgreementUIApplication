@@ -33,13 +33,13 @@ namespace VeriShareApplication.Logic
         }
 
 
-        public async Task<CustomerLoanViewModel> AddCustomerLoan(string Stardte, string Enddate, double Reporate, int AgreementTypeId, double Amount)
+        public async Task<CustomerLoanViewModel> AddCustomerLoan(string Startdate, string Enddate, double Reporate, int AgreementTypeId, double Amount)
         {
             //{ Stardte}/{ Enddate}/{ Reporate}/{ AgreementTypeId}/{ Amount}
             HttpClient client = new HttpClient();
             CustomerLoanViewModel Customersobj = new CustomerLoanViewModel();
             const string url = "http://localhost:50603/api/CustomerLoan";
-            HttpResponseMessage response = await client.GetAsync($"{url}/{Stardte}/{Enddate}/{Reporate}/{AgreementTypeId}/{Amount}");
+            HttpResponseMessage response = await client.GetAsync($"{url}/{Startdate}/{Enddate}/{Reporate}/{AgreementTypeId}/{Amount}");
             // response.EnsureSuccessStatusCode();
             if (response.IsSuccessStatusCode)
             {

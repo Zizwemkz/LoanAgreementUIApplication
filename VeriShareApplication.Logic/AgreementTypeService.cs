@@ -41,7 +41,7 @@ namespace VeriShareApplication.Logic
             var json = JsonConvert.SerializeObject(model);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage respose = await client.PostAsync("http://localhost:50603/api/Customer", content);
+            HttpResponseMessage respose = await client.PostAsync("http://localhost:50603/api/AgreementType", content);
 
             if (respose.IsSuccessStatusCode)
             {
@@ -50,12 +50,12 @@ namespace VeriShareApplication.Logic
             return false;
         }
 
-        public async Task<AgreementTypeViewModel> GetAgreementTypeById(int? CustomerId)
+        public async Task<AgreementTypeViewModel> GetAgreementTypeById(int? AgreementId)
         {
             HttpClient client = new HttpClient();
             AgreementTypeViewModel AgreementTypeobj = new AgreementTypeViewModel();
-            const string url = "http://localhost:53854/api/Customer";
-            HttpResponseMessage response = await client.GetAsync($"{url}/{CustomerId}");
+            const string url = "http://localhost:53854/api/AgreementType";
+            HttpResponseMessage response = await client.GetAsync($"{url}/{AgreementId}");
             // response.EnsureSuccessStatusCode();
             if (response.IsSuccessStatusCode)
             {
