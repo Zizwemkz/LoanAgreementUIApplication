@@ -99,7 +99,8 @@
                 @Html.DisplayFor(modelItem => item.phone)
             </td>
             <td>
-                @Html.ActionLink("Request Loan", "Create", "CustomerLoans", new { id = item.CustomerId }, new { @class = "btn btn-primary" })
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "CustomerLoans" , new { id = item.CustomerId })'">Request Loan</button>
+                @*@Html.ActionLink("Request Loan", "Create", "CustomerLoans", new { id = item.CustomerId }, new { @class = "btn btn-primary" })*@
             </td>
         </tr>
     }

@@ -135,6 +135,7 @@
     <Compile Include="Controllers\AgreementTypesController.cs" />
     <Compile Include="Controllers\CustomerLoansController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,6 +204,8 @@
     <Content Include="Views\CustomerLoans\Edit.cshtml" />
     <Content Include="Views\CustomerLoans\Index.cshtml" />
     <Content Include="Views\CustomerLoans\CalcLoan.cshtml" />
+    <Content Include="Views\Error\Bad_Request.cshtml" />
+    <Content Include="Views\Error\Not_Found.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

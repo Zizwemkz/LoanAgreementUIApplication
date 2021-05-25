@@ -69,6 +69,29 @@
     <div class="row">
         <div class="col-md-6">
             <table class="table">
+
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control", @placeholder = "2019/01/03" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", @placeholder = "2019/01/03" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <th width="180px">Agreement Type</th>
                     <td>
@@ -77,9 +100,9 @@
                                 <i class="fa fa-user"></i>
                             </div>
                             @*@Html.DropDownListFor(m => m.AgreementType, new { @class = "form-control", @placeholder = "First Name" })*@
-                            @Html.DropDownList("AgreementId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.DropDownList("AgreementId",null, htmlAttributes: new { @class = "form-control" })
                             <br />
-                            @Html.ValidationMessageFor(m => m.AgreementId, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.AgreementTypeId, "", new { @class = "text-danger" })
                         </div>
                     </td>
                 </tr>
@@ -90,8 +113,8 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-user"></i>
                             </div>
-                            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", @type = "number", @placeholder = "Amount" })
-                            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control;hidden", @placeholder = "Amount" })
+                            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", @placeholder = "Amount" })
+                            @Html.TextBoxFor(m => m.CustomerId, new { @class = "form-control hidden", @placeholder = "CustomerId" })
                             <br />
                             @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
                         </div>
@@ -114,6 +137,13 @@
         </div>
         <div class="col-md-6">
             <table class="table">
+                <tr>
+                    <th width="180px"></th>
+                    <td>
+                        <div class="input-group">
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <th width="180px">@Html.LabelFor(m => m.StatusCode)</th>
                     <td>

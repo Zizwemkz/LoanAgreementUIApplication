@@ -9,16 +9,16 @@ namespace VeriShareApplication.Models
     public class CustomerLoanViewModel
     {
         
-        [Required]
+      
         [Display(Name = "CustomerId")]
         public int CustomerId { get; set; }
 
         [Required]
         [Display(Name = "AgreementTypeId")]
-        public int AgreementId { get; set; }
+        public int AgreementTypeId { get; set; }
 
-        public float Amount { get; set; }
-        public float ReturnInterest { get; set; }
+        public decimal Amount { get; set; }
+        public decimal ReturnInterest { get; set; }
         public double RepoRate { get; set; }
 
         public int StatusCode { get; set; }

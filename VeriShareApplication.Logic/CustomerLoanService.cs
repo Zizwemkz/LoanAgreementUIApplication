@@ -33,21 +33,23 @@ namespace VeriShareApplication.Logic
         }
 
 
-        public async Task<bool> AddCustomerLoan(CustomerLoanViewModel model)
+        public async Task<CustomerLoanViewModel> AddCustomerLoan(string Stardte, string Enddate, double Reporate, int AgreementTypeId, double Amount)
         {
-
+            //{ Stardte}/{ Enddate}/{ Reporate}/{ AgreementTypeId}/{ Amount}
             HttpClient client = new HttpClient();
-
-            var json = JsonConvert.SerializeObject(model);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage respose = await client.PostAsync("http://localhost:50603/api/CustomerLoan", content);
-
-            if (respose.IsSuccessStatusCode)
+            CustomerLoanViewModel Customersobj = new CustomerLoanViewModel();
+            const string url = "http://localhost:50603/api/CustomerLoan";
+            HttpResponseMessage response = await client.GetAsync($"{url}/{Stardte}/{Enddate}/{Reporate}/{AgreementTypeId}/{Amount}");
+            // response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
             {
-                return true;
+                var CustomerResponse = response.Content.ReadAsStringAsync().Result;
+
+                Customersobj = JsonConvert.DeserializeObject<CustomerLoanViewModel>(CustomerResponse);
+                return Customersobj;
             }
-            return false;
+            //  return posts;
+            return Customersobj;
         }
 
         public async Task<CustomerLoanViewModel> GetCustomerLoanById(int? CustomerId)
